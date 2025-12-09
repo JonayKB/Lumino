@@ -1,0 +1,162 @@
+\documentclass[12pt,a4paper]{article}
+\input{../../.common/preamble.sty}
+
+\title{\textbf{Lumino Docs}}
+
+\begin{document}
+\maketitle
+
+La documentación en un proyecto de software es un componente clave que asegura la comprensión, mantenimiento y evolución del sistema a lo largo de su ciclo de vida. Sirve como puente entre los equipos de desarrollo, los ``stakeholders'' y los usuarios finales, proporcionando una descripción clara de los objetivos, funcionalidades y arquitectura del proyecto. Sin una documentación adecuada, los equipos podrían enfrentarse a desafíos como malentendidos, errores en la implementación y dificultades para dar soporte o realizar actualizaciones futuras.\\
+
+Existen muchas herramientas para documentar proyectos de software, pero dentro del mundo Python una de las más usadas es \href{https://www.mkdocs.org/}{MkDocs}. En realidad no es más que un generador estático pero que permite estructurar la documentación de forma muy clara y escribirla en formato Markdown.\\
+
+Uno de los proyectos más interesantes que se han desarrollado sobre este ecosistema es \href{https://squidfunk.github.io/mkdocs-material/}{Material for MkDocs}. Tiene un aspecto visual muy potente y además ofrece gran cantidad de funcionalidades. Pero existe una secuela de este proyecto que es aún más interesante: \href{https://zensical.org/}{Zensical}.\\
+
+\fbox{La idea es documentar el proyecto \textit{Lumino} (\texttt{pypas get lumino}) utilizando \textbf{Zensical}.}
+
+\section{Contenido}
+
+El grupo debe incluir en la documentación todos los puntos que se indican a continuación:
+
+\subsection*{Introducción}
+
+\begin{itemize}
+    \item \textbf{Propósito del documento}: Explicar los objetivos y el alcance de la documentación.
+    \item \textbf{Visión general del proyecto}: Breve descripción del software, su objetivo principal y el problema que soluciona.
+    \item \textbf{Audiencia objetivo}: Definir quiénes usarán esta documentación (desarrolladores, testers, usuarios finales, etc.).
+\end{itemize}
+
+\subsection*{Requisitos del proyecto}
+
+\begin{itemize}
+    \item \textbf{Requisitos funcionales}: Funcionalidades clave que el sistema debe cumplir.
+    \item \textbf{Requisitos no funcionales}: Rendimiento, seguridad, escalabilidad, usabilidad, etc.
+    \item \textbf{Restricciones}: Factores técnicos, legales o de negocio que afectan el desarrollo.
+    \item \textbf{Casos de uso}: Diagramas o descripciones de los escenarios de interacción con el sistema.
+\end{itemize}
+
+\subsection*{Diseño del sistema}
+
+\begin{itemize}
+    \item \textbf{Arquitectura del sistema}: Diagrama y descripción de los componentes principales.
+    \item \textbf{Modelo de datos}: Esquema de base de datos y relaciones entre entidades.
+    \item \textbf{Diagramas}: Diagramas de clases, de secuencia, de actividades...
+    \item \textbf{Decisiones de diseño}: Justificación de las tecnologías, patrones y enfoques elegidos.
+\end{itemize}
+
+\subsection*{Implementación}
+
+\begin{itemize}
+    \item \textbf{Estructura del código}: Organización del repositorio y convenciones usadas.
+    \item \textbf{Tecnologías y herramientas}: Lenguajes, frameworks, bibliotecas, y entornos de desarrollo.
+    \item \textbf{Instrucciones de configuración}: Pasos para instalar dependencias y configurar el entorno.    
+\end{itemize}
+
+\subsection*{Pruebas}
+
+\begin{itemize}
+    \item \textbf{Estrategia de pruebas}: Métodos utilizados (unitarias, de integración, de aceptación).
+    \item \textbf{Casos de prueba}: Ejemplos específicos y sus resultados esperados.
+    \item \textbf{Cobertura de pruebas}: Indicadores de qué partes del código están siendo probadas.
+    \item \textbf{Automatización}: Herramientas y scripts utilizados para pruebas automáticas.
+\end{itemize}
+
+\subsection*{Despliegue}
+
+\begin{itemize}
+    \item \textbf{Entorno de producción}: Descripción de los servidores, servicios y configuración necesaria.
+    \item \textbf{Proceso de despliegue}: Pasos detallados para implementar el software.
+    \item \textbf{Planes de recuperación}: Estrategias para manejar errores durante el despliegue.
+\end{itemize}
+
+\subsection*{Manuales de usuario}
+
+\begin{itemize}
+    \item \textbf{Instrucciones básicas}: Cómo instalar, configurar y usar el software.
+    \item \textbf{Guías avanzadas}: Funcionalidades específicas o tareas complejas.
+    \item \textbf{Solución de problemas}: Respuestas a preguntas frecuentes y resolución de errores comunes.
+\end{itemize}
+
+\subsection*{Mantenimiento y actualización}
+
+\begin{itemize}
+    \item \textbf{Política de mantenimiento}: Frecuencia de actualizaciones y soporte.
+    \item \textbf{Registro de cambios (Changelog)}: Historial de versiones y mejoras realizadas.
+    \item \textbf{Plan de escalabilidad}: Posibles mejoras para soportar más usuarios o nuevas funcionalidades.
+\end{itemize}
+
+\subsection*{Conclusiones y futuro}
+
+\begin{itemize}
+    \item \textbf{Estado actual del proyecto}: Resumen del progreso y alcance cumplido.
+    \item \textbf{Futuras actualizaciones}: Funcionalidades o mejoras planificadas.
+    \item \textbf{Lecciones aprendidas}: Reflexión sobre el desarrollo y recomendaciones para futuros proyectos.
+\end{itemize}
+
+\section{Requerimientos}
+
+Para que puedas trabajar con normalidad en este ejercicio debes tener instalado en tu máquina:
+
+\begin{enumerate}
+    \item \href{https://docs.astral.sh/uv/}{\texttt{uv}} $\rightarrow$ Gestor de paquetería y proyectos Python.
+    \item \href{https://just.systems/man/en/}{\texttt{just}} $\rightarrow$ Lanzador de comandos como recetas.
+\end{enumerate}
+
+\section{Puesta en marcha}
+
+Se proporciona una \textit{receta} \href{https://just.systems/man/en/}{\texttt{just}} para la puesta en marcha del proyecto:
+
+\begin{minted}[
+    numbersep=5pt,
+    frame=single,
+    framesep=3mm,
+]{bash}
+just setup
+\end{minted}
+
+¿Qué ha ocurrido?
+
+\begin{itemize}
+    \item Se ha creado un entorno virtual en la carpeta \verb|.venv|
+    \item Se han instalado las dependencias del proyecto.
+\end{itemize}
+
+En la estructura del proyecto es importante identificar lo siguiente:\\
+
+\begin{tabular}{|l|l|}
+    \hline
+    \texttt{docs/} & Carpeta con ficheros \textit{Markdown} para documentar el proyecto\\
+    \hline
+    \texttt{zensical.toml} & Fichero de configuración principal del proyecto \textit{Zensical}\\
+    \hline
+\end{tabular}
+
+\section{Flujo de trabajo}
+
+Para trabajar con el proyecto habrá que ir incorporando contenido en \verb|docs/| y configuraciones en \verb|zensical.toml|.\\
+
+Se proporciona una \textit{receta} \href{https://just.systems/man/en/}{\texttt{just}} para \textbf{renderizar el proyecto en desarrollo}:
+
+\begin{minted}[
+    numbersep=5pt,
+    frame=single,
+    framesep=3mm,
+]{bash}
+just runserver
+\end{minted}
+
+La receta anterior también se puede lanzar directamente con \verb|just| ya que es la receta \textit{por defecto}. Podrás visualizar el proyecto en tu navegador accediendo a: \verb|http://localhost:8000|\\
+
+Se proporciona una \textit{receta} \href{https://just.systems/man/en/}{\texttt{just}} para \textbf{construir el proyecto}:
+
+\begin{minted}[
+    numbersep=5pt,
+    frame=single,
+    framesep=3mm,
+]{bash}
+just build
+\end{minted}
+
+La receta anterior crea una carpeta \verb|site/| donde estarán los ficheros estáticos con el proyecto generado.
+
+\end{document}

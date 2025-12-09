@@ -1,0 +1,12 @@
+slug = "lumino-docs"
+bundle = [
+    "/docs",
+    "/zensical.toml",
+    "/.gitignore",
+    "/pyproject.toml",
+    "/uv.lock",
+    "/justfile",
+]
+backup_on_update = ["justfile"]
+exclude_from_zip = ["*.pyc", ".DS_Store", "/.git", "*.bak", ".venv", ".env"]
+test_cmd = "uv run pytest -s"
