@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from users.models import Profile
 
-# Create your views here.
+def subject_list(request):
+    subjects = request.user.subjects.all()
+
+    return render(request, 'subjects/subject/list.html', {'subjects': subjects })
+    
+    

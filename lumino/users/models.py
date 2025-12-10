@@ -3,8 +3,8 @@ from django.conf import settings
 
 class Profile(models.Model):
     class Role(models.TextChoices):
-        TEACHER = 'T', 'Teacher'
         STUDENT = 'S', 'Student'
+        TEACHER = 'T', 'Teacher'
     
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
@@ -13,9 +13,10 @@ class Profile(models.Model):
     )
     avatar = models.ImageField(
         upload_to ='avatars',
-        default='avatars/noavatar.png'
+        default='avatars/noavatar.png',
+        blank=True
     )
-    bio = models.CharField(max_length=265, blank=True)
+    bio = models.TextField(max_length=265, blank=True)
     role = models.CharField(
         max_length= 1,
         choices=Role,
