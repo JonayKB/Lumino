@@ -1,1 +1,14 @@
-{{subjects}}
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Subjects</h1>
+  <ul>
+    {% for subject in subjects %}
+      <li>
+        <a>{{ subject.name }}</a>
+      </li>
+    {% empty %}
+      <li>No subjects available.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
