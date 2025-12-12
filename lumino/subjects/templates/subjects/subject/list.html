@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
   <h1>{% translate 'My subjects' %}</h1>
@@ -9,9 +10,4 @@
       {% translate 'No subjects available.' %}
     {% endfor %}
   </div>
-  {% empty %}
-  <li>
-    {% translate 'No subjects available.' %}
-  </li>
-  {% endfor %}
 {% endblock %}
