@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -21,6 +22,8 @@ class Enrollment(models.Model):
         blank=True,
         null=True
     )
+    def __str__(self):
+        return f"{self.student} enrolled in {self.subject}"
 
 
 
@@ -39,6 +42,11 @@ class Subject(models.Model):
         through= Enrollment,
         blank=True,
     ) 
+    def __str__(self):
+        return f"{self.code} - {self.name}"
+    
+    def get_absolute_url(self):
+        return reverse('subjects:subject-detail', args=[self])
 
 class Lesson(models.Model):
     subject = models.ForeignKey(
@@ -48,3 +56,7 @@ class Lesson(models.Model):
     )
     title =models.CharField(max_length=32)
     content = models.TextField(max_length=256, blank=True)
+    def __str__(self):
+        return f"Lesson: {self.title} of {self.subject}"
+    def get_absolute_url(self):
+        return reverse('subjects:lesson-detail', args=[self.subject, self])

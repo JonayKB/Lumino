@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from users.models import Profile
+from .models import Subject
 
 def subject_list(request):
-    subjects = request.user.subjects.all()
+    return render(request, 'subjects/subject/list.html')
 
-    return render(request, 'subjects/subject/list.html', {'subjects': subjects })
+def subject_detail(request, subject: Subject):
+    pass
     
     
