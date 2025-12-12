@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Subjects</h1>
-  <ul>
-    {% for subject in subjects %}
-      <li>
-        <a>{{ subject.name }}</a>
-      </li>
+  <h1>{% translate 'My subjects' %}</h1>
+  <div class="subject-list">
+    {% for subject in user_subjects %}
+      {% include 'subjects/subject/component.html' %}
     {% empty %}
-      <li>No subjects available.</li>
+      {% translate 'No subjects available.' %}
     {% endfor %}
-  </ul>
+  </div>
+  {% empty %}
+  <li>
+    {% translate 'No subjects available.' %}
+  </li>
+  {% endfor %}
 {% endblock %}

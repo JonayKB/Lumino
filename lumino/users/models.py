@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 class Profile(models.Model):
     class Role(models.TextChoices):
@@ -22,3 +23,11 @@ class Profile(models.Model):
         choices=Role,
         default=Role.STUDENT
     )
+    def __str__(self):
+        return f"Profile of {self.user.username}"
+    def is_student(self):
+        return self.role == self.Role.STUDENT
+    def is_teacher(self):
+        return self.role == self.Role.TEACHER
+    def get_absolute_url(self):
+        return reverse('users:profile-detail', args=[self.user.username])
