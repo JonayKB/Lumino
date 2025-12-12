@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STATICFILES_DIRS = [BASE_DIR / 'node_modules']
+
 
 # Application definition
 
