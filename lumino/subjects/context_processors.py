@@ -1,8 +1,10 @@
-from .models import Subject
-
 def get_user_subjects(request):
-    if request.user.is_authenticated:
-        subjects = Subject.objects.filter(students=request.user)
+    user = request.user
+    if user.is_authenticated:
+        if user.profile.is_teacher():
+            subjects = user.teaching.all()
+        if user.profile.is_student():
+            subjects = user.enrolled.all()
         return {'user_subjects': subjects}
 
     return {}
