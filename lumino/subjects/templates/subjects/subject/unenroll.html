@@ -1,0 +1,10 @@
+{% load i18n %}
+
+<div>
+    <h1>{% translate 'Unenroll from a subject' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">{% translate 'Unenroll' %}</button>
+    </form>
+</div>

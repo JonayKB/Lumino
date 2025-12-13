@@ -3,6 +3,11 @@
 
 {% block content %}
   <h1>{% translate 'My subjects' %}</h1>
+  <div class="messages">
+    {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
   <div class="subject-list">
     {% for subject in user_subjects %}
       {% include 'subjects/subject/component.html' %}

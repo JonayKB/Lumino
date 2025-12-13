@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from subjects.decorators import student_required, teacher_required
 from .models import Lesson, Subject
 from django.contrib.auth.decorators import login_required
+from .forms import SubjectEnrollForm, SubjectUnenrollForm
+from django.contrib import messages
 
 @login_required
 def subject_list(request):
@@ -33,16 +35,31 @@ def lesson_delete(request, lesson: Lesson):
 
 @login_required
 @student_required
-def enroll_subject(request, subject: Subject):
-    pass
+def enroll_subjects(request):
+    if request.method == 'POST':
+        if (form := SubjectEnrollForm(request.user.pk, request.POST)).is_valid():
+            form.save(request.user)
+            messages.success(request, "Successfully enrolled in the chosen subjects.")
+            return redirect('subjects:subject-list')
+    else:
+        form = SubjectEnrollForm(request.user.pk)
+    return render(request, 'subjects/subject/enroll.html', {'form': form})
+
 
 @login_required
 @student_required
-def unenroll_subject(request, subject: Subject):
-    pass
+def unenroll_subjects(request):
+    if request.method == 'POST':
+        if (form := SubjectUnenrollForm(request.user.pk, request.POST)).is_valid():
+            form.save(request.user)
+            messages.success(request, "Successfully unenrolled from the chosen subjects.")
+            return redirect('subjects:subject-list')
+    else:
+        form = SubjectUnenrollForm(request.user.pk)
+    return render(request, 'subjects/subject/unenroll.html', {'form': form})
 
 @login_required
-@student_required
+@teacher_required
 def mark_list(request, subject: Subject):
     pass
 

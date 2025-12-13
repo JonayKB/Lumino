@@ -47,6 +47,13 @@ class Subject(models.Model):
     
     def get_absolute_url(self):
         return reverse('subjects:subject-detail', args=[self])
+    
+    def enroll(self, student):
+        Enrollment.objects.create(student=student, subject=self)
+
+    def unenroll(self, student):
+        Enrollment.objects.filter(student=student, subject=self).delete()
+
 
 class Lesson(models.Model):
     subject = models.ForeignKey(
