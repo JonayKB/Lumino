@@ -10,7 +10,7 @@ class Command(BaseCommand):
         subjects = Subject.objects.all()
         for subject in subjects:
             marks = subject.enrollments.filter(mark__isnull=False)
-            marks_len = marks.count()
+            marks_len = len(marks)
 
             if marks_len > 0:
                 marks_sum = sum(mark.mark for mark in marks)
