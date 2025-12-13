@@ -23,11 +23,11 @@ urlpatterns = (
         path('i18n/', include('django.conf.urls.i18n')),
     ]
     + i18n_patterns(
+        path('subjects/', include('subjects.urls')),
+        path('users/', include('users.urls')),
         path('admin/', admin.site.urls),
-    path('subjects/', include('subjects.urls')),
-    path('users/', include('users.urls')),
-    path('', include('shared.urls')),
-    path('', include('accounts.urls')),
-    path('', include('django.conf.urls.i18n')),
+        path('', include('shared.urls')),
+        path('', include('accounts.urls')),
+        path('', include('django.conf.urls.i18n')),
     )
 )
