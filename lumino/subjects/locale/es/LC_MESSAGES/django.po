@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 17:49+0000\n"
+"POT-Creation-Date: 2025-12-13 18:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,13 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
 
-#: subjects/templates/subjects/subject/enroll.html:4
+#: subjects/templates/subjects/enrollment/component.html:6
+msgid "Ungraded"
+msgstr "Sin calificación"
+
+#: subjects/templates/subjects/enrollment/enroll.html:4
 msgid "Enroll in a subject"
 msgstr "Matricularse a una asignatura"
 
-#: subjects/templates/subjects/subject/enroll.html:8
+#: subjects/templates/subjects/enrollment/enroll.html:8
 msgid "Enroll"
 msgstr "Matricularse"
+
+#: subjects/templates/subjects/enrollment/unenroll.html:4
+msgid "Unenroll from a subject"
+msgstr "Abandonar una asignatura"
+
+#: subjects/templates/subjects/enrollment/unenroll.html:8
+msgid "Unenroll"
+msgstr "Abandonar"
 
 #: subjects/templates/subjects/subject/list.html:5
 msgid "My subjects"
@@ -34,11 +46,3 @@ msgstr "Mis módulos"
 #: subjects/templates/subjects/subject/list.html:15
 msgid "No subjects available."
 msgstr "No hay asignaturas disponibles"
-
-#: subjects/templates/subjects/subject/unenroll.html:4
-msgid "Unenroll from a subject"
-msgstr "Abandonar una asignatura"
-
-#: subjects/templates/subjects/subject/unenroll.html:8
-msgid "Unenroll"
-msgstr "Abandonar"

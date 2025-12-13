@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from subjects.decorators import student_required, teacher_required
+from shared.decorators import student_required, teacher_required
 from .models import Lesson, Subject
 from django.contrib.auth.decorators import login_required
-from .forms import SubjectEnrollForm, SubjectUnenrollForm
+from .forms import SubjectEnrollForm, SubjectUnenrollForm,  EnrollmentMarkForm
 from django.contrib import messages
 
 @login_required
@@ -43,7 +43,7 @@ def enroll_subjects(request):
             return redirect('subjects:subject-list')
     else:
         form = SubjectEnrollForm(request.user.pk)
-    return render(request, 'subjects/subject/enroll.html', {'form': form})
+    return render(request, 'subjects/enrollment/enroll.html', {'form': form})
 
 
 @login_required
@@ -56,17 +56,30 @@ def unenroll_subjects(request):
             return redirect('subjects:subject-list')
     else:
         form = SubjectUnenrollForm(request.user.pk)
-    return render(request, 'subjects/subject/unenroll.html', {'form': form})
+    return render(request, 'subjects/enrollment/unenroll.html', {'form': form})
 
 @login_required
 @teacher_required
 def mark_list(request, subject: Subject):
-    pass
+    if subject.teacher != request.user: return
+    return render(request,'subjects/enrollment/mark_list.html',{'subject':subject})
 
+
+## TODO
 @login_required
 @teacher_required
 def edit_marks(request, subject: Subject ):
-    pass
+    if subject.teacher != request.user: return
+    if request.method == 'POST':
+        if (form := EnrollmentMarkForm(request.POST)).is_valid():
+            form.save()
+            messages.success("Marks were successfully saved.")
+            return redirect('subjects:mark-list')
+    else:
+        form = EnrollmentMarkForm(instance=subject.enrollments.all())
+
+    return render(request,'subjects/enrollment/edit_marks.html')
+
 
 @login_required
 @student_required

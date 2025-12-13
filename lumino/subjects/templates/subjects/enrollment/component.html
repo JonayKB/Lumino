@@ -1,0 +1,7 @@
+{% load i18n %}
+
+<div class="enrollment">
+    <h1 class="name">{{enrollment.student.first_name}} {{enrollment.student.last_name}}</h1>
+
+    <h2 class="mark">{{ enrollment.mark|default:_("Ungraded") }}</h2>
+</div>

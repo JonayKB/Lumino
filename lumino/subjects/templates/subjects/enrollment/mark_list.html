@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for enrollment in subject.enrollments.all %}
+
+{% include "subjects/enrollment/component.html" %}
+
+{% endfor %}
+{% endblock content %}
