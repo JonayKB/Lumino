@@ -1,0 +1,9 @@
+<div class="enrollment">
+  {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+  {% endfor %}
+  <h1 class="name">{{ form.instance.student.first_name }} {{ form.instance.student.last_name }}</h1>
+  <h2 class="mark">{{ form.mark }}</h2>
+  {{ form.mark.errors }}
+  {{ form.non_field_errors }}
+</div>

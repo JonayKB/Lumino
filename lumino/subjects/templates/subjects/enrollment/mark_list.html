@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for enrollment in subject.enrollments.all %}
-
-{% include "subjects/enrollment/component.html" %}
-
-{% endfor %}
-{% endblock content %}
+  <div class="messages">
+    {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% for enrollment in subject.enrollments.all %}
+    {% include 'subjects/enrollment/component.html' %}
+  {% endfor %}
+{% endblock %}

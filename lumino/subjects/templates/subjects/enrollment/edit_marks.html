@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+
+    {{ formset.non_form_errors }}
+
+    {% for form in formset %}
+      {% include 'subjects/enrollment/mark_form.html' %}
+    {% endfor %}
+
+    <button type="submit">{% translate 'Change Marks' %}</button>
+  </form>
+{% endblock %}

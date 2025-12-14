@@ -1,5 +1,7 @@
 from django import forms
+from django.forms import modelformset_factory
 from .models import  Subject, Enrollment
+from .widgets import MarkInput
 
 
 class SubjectEnrollForm(forms.Form):
@@ -31,4 +33,13 @@ class SubjectUnenrollForm(forms.Form):
 class EnrollmentMarkForm(forms.ModelForm):
     class Meta:
         model = Enrollment
-        fields = ['mark']
+        fields = ["mark"]
+        widgets ={
+            "mark":MarkInput()
+        }
+
+EnrollmentMarkFormSet = modelformset_factory(
+    Enrollment,
+    form=EnrollmentMarkForm,
+    extra=0 
+)
