@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from shared.decorators import student_required, teacher_required
-from .models import Lesson, Subject,Enrollment
+from .models import Lesson, Subject
 from django.contrib.auth.decorators import login_required
 from .forms import SubjectEnrollForm, SubjectUnenrollForm,  EnrollmentMarkFormSet
 from django.contrib import messages
+from .tasks import deliver_certificate
 @login_required
 def subject_list(request):
     return render(request, 'subjects/subject/list.html')
@@ -64,7 +65,6 @@ def mark_list(request, subject: Subject):
     return render(request,'subjects/enrollment/mark_list.html',{'subject':subject})
 
 
-## TODO
 @login_required
 @teacher_required
 def edit_marks(request, subject: Subject ):
@@ -86,4 +86,13 @@ def edit_marks(request, subject: Subject ):
 @login_required
 @student_required
 def request_certificate(request):
-    pass
+    if  not request.user.enrolled.exists():
+        messages.error(request, "You're not enrolled in any subject")
+    elif request.user.enrolled.filter(enrollments__mark__isnull=True).exists():
+        messages.error(request, "You have some ungraded subjects")
+    
+    else:
+        deliver_certificate.delay(request.build_absolute_uri(),request.user)
+        messages.success(request,f"You will get the grade certificate quite soon at {request.user.email}")
+    
+    return redirect('subjects:subject-list')

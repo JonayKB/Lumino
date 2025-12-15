@@ -26,6 +26,7 @@ urlpatterns = (
         path('subjects/', include('subjects.urls')),
         path('users/', include('users.urls')),
         path('admin/', admin.site.urls),
+        path('django-rq/', include('django_rq.urls')),
         path('', include('shared.urls')),
         path('', include('accounts.urls')),
         path('', include('django.conf.urls.i18n')),

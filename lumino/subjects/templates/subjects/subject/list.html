@@ -8,6 +8,9 @@
       <div class="message {{ message.tags }}">{{ message }}</div>
     {% endfor %}
   </div>
+  {% if user.profile.is_student %}
+  <a href="{% url 'subjects:request-certificate' %}">{% translate "Request Grade Certificate" %}</a>
+  {% endif %}
   <div class="subject-list">
     {% for subject in user_subjects %}
       {% include 'subjects/subject/component.html' %}

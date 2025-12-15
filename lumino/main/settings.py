@@ -25,9 +25,21 @@ SECRET_KEY = 'django-insecure-27ff-8pvxkn!f5#%ho!of*vwqpd4vsd=hk_c(6u7p=4$ho4+3-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+MEDIA_ROOT = BASE_DIR / 'media'
+
+MEDIA_URL = 'media/'
+
 ALLOWED_HOSTS = []
 
 STATICFILES_DIRS = [BASE_DIR / 'node_modules']
+
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+    },
+}
 
 
 # Application definition
@@ -43,6 +55,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'subjects.apps.SubjectsConfig',
     'users.apps.UsersConfig',
+    'django_rq',
 ]
 
 MIDDLEWARE = [
