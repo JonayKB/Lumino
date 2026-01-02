@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
+<a href="{% url 'subjects:edit-marks' subject %}">{% translate "Edit Marks" %}</a>
   <div class="messages">
     {% for message in messages %}
       <div class="message {{ message.tags }}">{{ message }}</div>

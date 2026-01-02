@@ -1,8 +1,13 @@
 <div class="enrollment">
+  <div class="messages">
+    {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
   {% for hidden in form.hidden_fields %}
     {{ hidden }}
   {% endfor %}
-  <h1 class="name">{{ form.instance.student.first_name }} {{ form.instance.student.last_name }}</h1>
+  <h1 class="name">{{ form.instance.student.profile.get_full_name }}</h1>
   <h2 class="mark">{{ form.mark }}</h2>
   {{ form.mark.errors }}
   {{ form.non_field_errors }}

@@ -10,7 +10,7 @@ class SubjectConverter:
         return get_object_or_404(Subject, code=subject_code)
 
     def to_url(self, subject: Subject):
-        return str(subject.code)
+        return subject.code
     
 class LessonConverter:
     regex = '[0-9]+'
@@ -19,4 +19,4 @@ class LessonConverter:
         return get_object_or_404(Lesson, pk=lesson_pk)
 
     def to_url(self, lesson: Lesson):
-        return str(lesson.pk)
+        return lesson.pk

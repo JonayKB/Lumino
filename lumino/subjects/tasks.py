@@ -1,34 +1,25 @@
 from django_rq import job
 from django.conf import settings
+from django.template.loader import render_to_string
 from weasyprint import HTML
+from django.core.mail import EmailMessage
+
+from django.utils.translation import gettext as _
 
 @job
-def deliver_certificate(base_url, student: settings.AUTH_USER_MODEL ):
-    HTML('subjects/templates/emails/certificate.html', base_url=base_url).write_pdf(f'media/certificates/{student.username}_grade_certificate.pdf')
+def deliver_certificate(base_url, student: settings.AUTH_USER_MODEL):
+    #Para traducir el mensaje, lo unico que requeriria es en esta llamada recibir el lang, ya que el metodo de get_language no funciona ya que no hay request
+    #Una vez lo tuvieramos, solo habria que seleccionarlo, y usarlo en la plantilla o en la llamada de gettext
 
-# from django.core.mail import EmailMessage
-# from django.shortcuts import redirect, render
-# from django.template.loader import render_to_string
+    content = render_to_string('emails/certificate.html', {'student': student})
+    pdfPath = f'media/certificates/{student.username}_grade_certificate.pdf'
 
-# from markdown import markdown
+    HTML(string=content, base_url=base_url).write_pdf(pdfPath)
 
-
-# @login_required
-# def add_post(request):
-#     if request.method == 'POST':
-#         if (form := AddPostForm(request.POST)).is_valid():
-#             post = form.save()
-#             body = markdown(render_to_string(
-#                 'posts/emails/add.md',
-#                 {'post': post}
-#             ))
-#             email = EmailMessage(
-#                 subject='New post',
-#                 body=body,
-#                 to=['super@blog.com']
-#             )
-#             email.send()
-#             return redirect('posts:post-list')
-#     else:
-#         form = AddPostForm()
-#     return render(request, 'posts/post/add.html', {'form': form})
+    email = EmailMessage(
+        subject=f'{_("Grade Certificate for")} {student.profile.get_full_name()}',
+        body=content,
+        to=[student.email]
+    )
+    email.attach_file(pdfPath)
+    email.send()

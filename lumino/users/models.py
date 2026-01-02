@@ -31,3 +31,5 @@ class Profile(models.Model):
         return self.role == self.Role.TEACHER
     def get_absolute_url(self):
         return reverse('users:profile-detail', args=[self.user.username])
+    def get_full_name(self):
+        return f"{self.user.first_name} {self.user.last_name}"

@@ -13,8 +13,8 @@ urlpatterns = [
     path('<subject:subject>/',views.subject_detail,name='subject-detail'),
 
     ## Enrollments
-    path('enroll/',views.enroll_subjects,name='enroll-subject'),
-    path('unenroll/',views.unenroll_subjects,name='unenroll-subject'),
+    path('enroll/',views.enroll_subjects,name='enroll-subjects'),
+    path('unenroll/',views.unenroll_subjects,name='unenroll-subjects'),
 
     ## Marks
     path('<subject:subject>/marks/',views.mark_list,name='mark-list'),

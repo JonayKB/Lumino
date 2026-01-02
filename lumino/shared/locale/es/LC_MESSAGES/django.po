@@ -21,7 +21,7 @@ msgstr ""
 
 #: shared/templates/header.html:11
 msgid "Logout"
-msgstr ""
+msgstr "Cerrar Sesión"
 
 #: shared/templates/index.html:5
 msgid "Join Lumino. The cool education platform!"

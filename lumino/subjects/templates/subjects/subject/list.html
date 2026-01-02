@@ -10,6 +10,10 @@
   </div>
   {% if user.profile.is_student %}
   <a href="{% url 'subjects:request-certificate' %}">{% translate "Request Grade Certificate" %}</a>
+  <a href="{% url 'subjects:enroll-subjects' %}">{% translate "Enroll Subjects" %}</a>
+  <a href="{% url 'subjects:unenroll-subjects' %}">{% translate "Unenroll Subjects" %}</a>
+
+
   {% endif %}
   <div class="subject-list">
     {% for subject in user_subjects %}
