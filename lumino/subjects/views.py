@@ -6,6 +6,8 @@ from .forms import SubjectEnrollForm, SubjectUnenrollForm,  EnrollmentMarkFormSe
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from .tasks import deliver_certificate
+from django.utils.translation import get_language
+
 @login_required
 def subject_list(request):
     return render(request, 'subjects/subject/list.html')
@@ -92,5 +94,6 @@ def request_certificate(request):
         messages.error(request, "You have some ungraded subjects")
         raise PermissionDenied
     
-    deliver_certificate.delay(request.build_absolute_uri(), request.user)
+    #Aqui debería enviarse en idioma, usando get_language(), pero esta preaprado para mockear con dos argumentos posicionales
+    deliver_certificate.delay(request.build_absolute_uri(), request.user,get_language())
     return render(request,'subjects/enrollment/certificate_request.html')

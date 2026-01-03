@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-02 03:43+0000\n"
+"POT-Creation-Date: 2026-01-03 13:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,9 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
 
-#: subjects/tasks.py:20
-#, fuzzy
+#: subjects/tasks.py:18
 #| msgid "Request Grade Certificate"
-msgid "Grade Certificate for"
+msgid "Grade Certificate from"
 msgstr "Certificado de notas para"
 
 #: subjects/templates/emails/certificate.html:8
@@ -40,7 +39,6 @@ msgid "Ungraded"
 msgstr "Sin calificación"
 
 #: subjects/templates/emails/certificate.html:27
-#, fuzzy
 #| msgid "No subjects available."
 msgid "No subjects enrolled"
 msgstr "No hay asignaturas disponibles"
@@ -86,12 +84,10 @@ msgid "Request Grade Certificate"
 msgstr "Pedir Certificado de Notas"
 
 #: subjects/templates/subjects/subject/list.html:13
-#| msgid "Enroll in a subject"
 msgid "Enroll Subjects"
 msgstr "Matricularse en asignaturas"
 
 #: subjects/templates/subjects/subject/list.html:14
-#| msgid "Unenroll from a subject"
 msgid "Unenroll Subjects"
 msgstr "Abandonar asignaturas"
 
