@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import LoginForm,SignupForm
 from django.urls import reverse
 from django.contrib.auth import login,logout,authenticate
+from django.utils.translation import gettext as _
 
 
 FALLBACK_URL = 'index'
@@ -18,7 +19,7 @@ def user_login(request):
                login(request,user)
                return redirect(request.GET.get('next', FALLBACK_URL))
            else:
-                form.add_error(None, "Incorrect username or password")
+                form.add_error(None, _("Incorrect username or password"))
     else:
         form = LoginForm()
     return render(request,'accounts/login.html', {'form':form, 'hide_links': True})

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 13:59+0000\n"
+"POT-Creation-Date: 2026-01-03 14:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,6 @@ msgstr ""
 "1 : 2;\n"
 
 #: subjects/tasks.py:18
-#| msgid "Request Grade Certificate"
 msgid "Grade Certificate from"
 msgstr "Certificado de notas para"
 
@@ -39,7 +38,6 @@ msgid "Ungraded"
 msgstr "Sin calificación"
 
 #: subjects/templates/emails/certificate.html:27
-#| msgid "No subjects available."
 msgid "No subjects enrolled"
 msgstr "No hay asignaturas disponibles"
 
@@ -94,3 +92,19 @@ msgstr "Abandonar asignaturas"
 #: subjects/templates/subjects/subject/list.html:22
 msgid "No subjects available."
 msgstr "No hay asignaturas disponibles"
+
+#: subjects/views.py:46
+msgid "Successfully enrolled in the chosen subjects."
+msgstr "Correctamente matriculado a las asignaturas seleccionadas"
+
+#: subjects/views.py:59
+msgid "Successfully unenrolled from the chosen subjects."
+msgstr "Has abandonado correctamente las asignaturas seleccioandas"
+
+#: subjects/views.py:81
+msgid "Marks were successfully saved."
+msgstr "Los cambios han sido guardados"
+
+#: subjects/views.py:95
+msgid "You have some ungraded subjects"
+msgstr "Tienes asignaturas sin calificación"

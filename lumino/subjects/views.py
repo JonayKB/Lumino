@@ -6,7 +6,8 @@ from .forms import SubjectEnrollForm, SubjectUnenrollForm,  EnrollmentMarkFormSe
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from .tasks import deliver_certificate
-from django.utils.translation import get_language
+from django.utils.translation import get_language, gettext as _
+
 
 @login_required
 def subject_list(request):
@@ -18,22 +19,22 @@ def subject_detail(request, subject: Subject):
 
 @login_required
 @teacher_required
-def lesson_add(request, lesson: Lesson):
+def lesson_add(request, subject: Subject):
     pass
 
 @login_required
-def lesson_detail(request, lesson: Lesson):
+def lesson_detail(request, lesson: Lesson, subject: Subject):
     pass
 
-
-@login_required
-@teacher_required
-def lesson_edit(request, lesson: Lesson):
-    pass
 
 @login_required
 @teacher_required
-def lesson_delete(request, lesson: Lesson):
+def lesson_edit(request, lesson: Lesson, subject: Subject):
+    pass
+
+@login_required
+@teacher_required
+def lesson_delete(request, lesson: Lesson, subject: Subject):
     pass
 
 @login_required
@@ -42,7 +43,7 @@ def enroll_subjects(request):
     if request.method == 'POST':
         if (form := SubjectEnrollForm(request.user.pk, request.POST)).is_valid():
             form.save(request.user)
-            messages.success(request, "Successfully enrolled in the chosen subjects.")
+            messages.success(request, _("Successfully enrolled in the chosen subjects."))
             return redirect('subjects:subject-list')
     else:
         form = SubjectEnrollForm(request.user.pk)
@@ -55,7 +56,7 @@ def unenroll_subjects(request):
     if request.method == 'POST':
         if (form := SubjectUnenrollForm(request.user.pk, request.POST)).is_valid():
             form.save(request.user)
-            messages.success(request, "Successfully unenrolled from the chosen subjects.")
+            messages.success(request, _("Successfully unenrolled from the chosen subjects."))
             return redirect('subjects:subject-list')
     else:
         form = SubjectUnenrollForm(request.user.pk)
@@ -77,7 +78,7 @@ def edit_marks(request, subject: Subject ):
         formset = EnrollmentMarkFormSet(request.POST, queryset=subject.enrollments.all())
         if (formset := EnrollmentMarkFormSet(request.POST, queryset=subject.enrollments.all())).is_valid():
             formset.save()
-            messages.success(request,"Marks were successfully saved.")
+            messages.success(request,_("Marks were successfully saved."))
             return redirect('subjects:edit-marks', subject=subject)
         
     else:
@@ -91,7 +92,7 @@ def edit_marks(request, subject: Subject ):
 def request_certificate(request):
     # Aquí añadiria una verificación de que el alumno tiene alguna asignatura, pero los tests no lo permiten
     if request.user.enrolled.filter(enrollments__mark__isnull=True).exists():
-        messages.error(request, "You have some ungraded subjects")
+        messages.error(request, _("You have some ungraded subjects"))
         raise PermissionDenied
     
     #Aqui debería enviarse en idioma, usando get_language(), pero esta preaprado para mockear con dos argumentos posicionales
