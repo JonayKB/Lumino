@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 14:19+0000\n"
+"POT-Creation-Date: 2026-01-04 19:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgid "SUBJECTS"
 msgstr "ASIGNATURAS"
 
 #: subjects/templates/emails/certificate.html:23
-#: subjects/templates/subjects/enrollment/component.html:6
+#: subjects/templates/subjects/enrollment/component.html:9
 #: subjects/widgets.py:11
 msgid "Ungraded"
 msgstr "Sin calificación"
@@ -53,11 +53,11 @@ msgstr "Dentro de poco recibiras tu certificado en"
 msgid "Change Marks"
 msgstr "Cambiar Notas"
 
-#: subjects/templates/subjects/enrollment/enroll.html:4
+#: subjects/templates/subjects/enrollment/enroll.html:5
 msgid "Enroll in a subject"
 msgstr "Matricularse a una asignatura"
 
-#: subjects/templates/subjects/enrollment/enroll.html:8
+#: subjects/templates/subjects/enrollment/enroll.html:9
 msgid "Enroll"
 msgstr "Matricularse"
 
@@ -65,46 +65,60 @@ msgstr "Matricularse"
 msgid "Edit Marks"
 msgstr "Editar Notas"
 
-#: subjects/templates/subjects/enrollment/unenroll.html:4
+#: subjects/templates/subjects/enrollment/unenroll.html:5
 msgid "Unenroll from a subject"
 msgstr "Abandonar una asignatura"
 
-#: subjects/templates/subjects/enrollment/unenroll.html:8
+#: subjects/templates/subjects/enrollment/unenroll.html:9
 msgid "Unenroll"
 msgstr "Abandonar"
+
+#: subjects/templates/subjects/subject/detail.html:7
+msgid "Add Lesson"
+msgstr "Añadir Tema"
+
+#: subjects/templates/subjects/subject/detail.html:8
+#, fuzzy
+#| msgid "Edit Marks"
+msgid "Marks"
+msgstr "Editar Notas"
+
+#: subjects/templates/subjects/subject/detail.html:13
+msgid "Your mark for this subject:"
+msgstr "Tu nota en esta asignatura:"
 
 #: subjects/templates/subjects/subject/list.html:5
 msgid "My subjects"
 msgstr "Mis módulos"
 
-#: subjects/templates/subjects/subject/list.html:12
+#: subjects/templates/subjects/subject/list.html:8
 msgid "Request Grade Certificate"
 msgstr "Pedir Certificado de Notas"
 
-#: subjects/templates/subjects/subject/list.html:13
+#: subjects/templates/subjects/subject/list.html:9
 msgid "Enroll Subjects"
 msgstr "Matricularse en asignaturas"
 
-#: subjects/templates/subjects/subject/list.html:14
+#: subjects/templates/subjects/subject/list.html:10
 msgid "Unenroll Subjects"
 msgstr "Abandonar asignaturas"
 
-#: subjects/templates/subjects/subject/list.html:22
+#: subjects/templates/subjects/subject/list.html:18
 msgid "No subjects available."
 msgstr "No hay asignaturas disponibles"
 
-#: subjects/views.py:46
+#: subjects/views.py:57
 msgid "Successfully enrolled in the chosen subjects."
 msgstr "Correctamente matriculado a las asignaturas seleccionadas"
 
-#: subjects/views.py:59
+#: subjects/views.py:70
 msgid "Successfully unenrolled from the chosen subjects."
 msgstr "Has abandonado correctamente las asignaturas seleccioandas"
 
-#: subjects/views.py:81
+#: subjects/views.py:92
 msgid "Marks were successfully saved."
 msgstr "Los cambios han sido guardados"
 
-#: subjects/views.py:95
+#: subjects/views.py:106
 msgid "You have some ungraded subjects"
 msgstr "Tienes asignaturas sin calificación"

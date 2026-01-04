@@ -1,14 +1,13 @@
-from . import views
 from django.urls import path, register_converter
-from . import converters
-
+from . import converters, views
 
 app_name = 'users'
-register_converter(converters.ProfileConverter,'profile')
+
+register_converter(converters.ProfileConverter, 'profile')
+
 urlpatterns = [
-    path('<profile:profile>/', views.user_detail, name='profile-detail'),
-    path('edit/', views.user_edit, name='profile-edit'),
-    path('leave/', views.user_leave, name='profile-leave'),
+    path('user/edit/', views.user_edit, name='edit-profile'),
+    path('user/leave/', views.user_leave, name='delete-profile'),
 
-
+    path('users/<profile:profile>/', views.user_detail, name='profile-detail'),
 ]

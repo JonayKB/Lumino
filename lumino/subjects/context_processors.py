@@ -6,6 +6,6 @@ def get_user_subjects(request):
             subjects = user.teaching.all()
         if user.profile.is_student():
             subjects = user.enrolled.all()
-        return {'user_subjects': subjects}
+        return {'subjects': subjects}
 
     return {}

@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block content %}
+  {% include "messages.html" %}
   <h1>{% translate 'Join Lumino. The cool education platform!' %}</h1>
   <a href="{% url 'login' %}">{% translate 'Login' %}</a>
   <a href="{% url 'signup' %}">{% translate 'Sign up' %}</a>

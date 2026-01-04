@@ -23,8 +23,6 @@ urlpatterns = [
     ## Certificates
     path('certificate/',views.request_certificate,name='request-certificate'),
 
-
-
     ## Lessons
     path('<subject:subject>/lessons/add/',views.lesson_add,name='add-lesson'),
     path('<subject:subject>/lessons/<lesson:lesson>/',views.lesson_detail,name='lesson-detail'),

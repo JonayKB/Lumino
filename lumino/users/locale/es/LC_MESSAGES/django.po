@@ -18,19 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
+#: users/templates/users/profile/detail.html:17
+msgid "Edit"
+msgstr "Editar"
 
-#: shared/templates/header.html:11
-msgid "Logout"
-msgstr "Cerrar Sesión"
+#: users/templates/users/profile/edit.html:8
+msgid "Edit Profile"
+msgstr "Editar Perfil"
 
-#: shared/templates/index.html:6
-msgid "Join Lumino. The cool education platform!"
-msgstr "Unete a Lumino. Una plataforma de educación"
+#: users/views.py:25
+msgid "User profile has been successfully saved."
+msgstr "El perfil se ha guardado correctamente"
 
-#: shared/templates/index.html:7
-msgid "Login"
-msgstr "Iniciar Sesión"
-
-#: shared/templates/index.html:8
-msgid "Sign up"
-msgstr "Registrarse"
+#: users/views.py:36
+msgid "Good bye! Hope to see you soon."
+msgstr "¡Nos vemos! Esperamos verte pronto"

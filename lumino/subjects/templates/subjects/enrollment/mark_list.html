@@ -3,11 +3,8 @@
 
 {% block content %}
 <a href="{% url 'subjects:edit-marks' subject %}">{% translate "Edit Marks" %}</a>
-  <div class="messages">
-    {% for message in messages %}
-      <div class="message {{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-  </div>
+  {% include "messages.html" %}
+
   {% for enrollment in subject.enrollments.all %}
     {% include 'subjects/enrollment/component.html' %}
   {% endfor %}

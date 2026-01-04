@@ -15,7 +15,18 @@ def subject_list(request):
 
 @login_required
 def subject_detail(request, subject: Subject):
-    pass
+    profile = request.user.profile
+    enrollment = None
+    if profile.is_teacher() and subject.teacher != request.user:
+        raise PermissionDenied
+    if profile.is_student():
+        try:
+            enrollment = subject.enrollments.filter(student = request.user).first()
+        except Subject.DoesNotExist:
+            raise PermissionDenied
+        
+    return render(request, 'subjects/subject/detail.html', {'subject':subject, 'enrollment':enrollment })
+
 
 @login_required
 @teacher_required

@@ -3,11 +3,7 @@
 
 {% block content %}
   <h1>{% translate 'My subjects' %}</h1>
-  <div class="messages">
-    {% for message in messages %}
-      <div class="message {{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-  </div>
+  {% include "messages.html" %}
   {% if user.profile.is_student %}
   <a href="{% url 'subjects:request-certificate' %}">{% translate "Request Grade Certificate" %}</a>
   <a href="{% url 'subjects:enroll-subjects' %}">{% translate "Enroll Subjects" %}</a>
@@ -16,7 +12,7 @@
 
   {% endif %}
   <div class="subject-list">
-    {% for subject in user_subjects %}
+    {% for subject in subjects %}
       {% include 'subjects/subject/component.html' %}
     {% empty %}
       {% translate 'No subjects available.' %}
