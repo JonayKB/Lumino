@@ -6,7 +6,7 @@
   {% if user.is_authenticated %}
   <div class="user-nav">
   <h3>{{user}}</h3>
-  <h5>{{user.profile.role}}</h5>
+  <h5>{{user.profile.get_role_display}}</h5>
   </div>
   <a href="{% url 'logout' %}">{% translate "Logout" %}</a>
   {% endif %}

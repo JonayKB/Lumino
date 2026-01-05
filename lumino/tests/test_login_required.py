@@ -3,6 +3,8 @@ from pytest_django.asserts import assertRedirects
 
 from tests import conftest
 
+
+
 AUTH_URLS = [
     # SUBJECTS
     f'/{conftest.TESTLANG}/subjects/',

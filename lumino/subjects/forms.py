@@ -1,8 +1,29 @@
 from django import forms
 from django.forms import modelformset_factory
-from .models import  Subject, Enrollment
+from .models import  Lesson, Subject, Enrollment
 from .widgets import MarkInput
 
+class AddLessonForm(forms.ModelForm):
+    class Meta:
+        model = Lesson
+        fields = ['title', 'content']
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 5}),
+        }
+
+    def save(self, subject):
+        lesson = super().save(commit=False)
+        lesson.subject = subject
+        lesson.save()
+
+
+class EditLessonForm(forms.ModelForm):
+    class Meta:
+        model = Lesson
+        fields = ['title', 'content']
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 5}),
+        }
 
 class SubjectEnrollForm(forms.Form):
     subjects = forms.ModelMultipleChoiceField(

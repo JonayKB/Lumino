@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from shared.decorators import student_required, teacher_required
+from shared.decorators import student_required, teacher_required, user_is_subject_teacher
 from .models import Lesson, Subject
 from django.contrib.auth.decorators import login_required
-from .forms import SubjectEnrollForm, SubjectUnenrollForm,  EnrollmentMarkFormSet
+from .forms import SubjectEnrollForm, SubjectUnenrollForm,  EnrollmentMarkFormSet, EditLessonForm,AddLessonForm
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from .tasks import deliver_certificate
@@ -11,7 +11,9 @@ from django.utils.translation import get_language, gettext as _
 
 @login_required
 def subject_list(request):
-    return render(request, 'subjects/subject/list.html')
+    if request.user.profile.is_student:
+        show_request_certificate = request.user.enrollments.filter(mark__isnull=False).exists()
+    return render(request, 'subjects/subject/list.html', {'show_request_certificate': show_request_certificate})
 
 @login_required
 def subject_detail(request, subject: Subject):
@@ -20,33 +22,57 @@ def subject_detail(request, subject: Subject):
     if profile.is_teacher() and subject.teacher != request.user:
         raise PermissionDenied
     if profile.is_student():
-        try:
             enrollment = subject.enrollments.filter(student = request.user).first()
-        except Subject.DoesNotExist:
-            raise PermissionDenied
-        
+            if not enrollment:
+                raise PermissionDenied
+
     return render(request, 'subjects/subject/detail.html', {'subject':subject, 'enrollment':enrollment })
 
 
 @login_required
 @teacher_required
+@user_is_subject_teacher
 def lesson_add(request, subject: Subject):
-    pass
+    if request.method == 'POST':
+        if (form := AddLessonForm(request.POST)).is_valid():
+            form.save(subject)
+            messages.success(request, _("Lesson was successfully added."))
+            return redirect(subject)
+    else:
+        form = AddLessonForm()
+    return render(request, 'subjects/lesson/add.html', {'form': form, 'subject': subject})
+
 
 @login_required
 def lesson_detail(request, lesson: Lesson, subject: Subject):
-    pass
-
+    profile = request.user.profile
+    if profile.is_teacher() and subject.teacher != request.user:
+        raise PermissionDenied
+    if profile.is_student():
+        if not subject.enrollments.filter(student = request.user).exists():
+            raise PermissionDenied
+    return render(request, 'subjects/lesson/detail.html', {'lesson': lesson, 'subject': subject})
 
 @login_required
 @teacher_required
+@user_is_subject_teacher
 def lesson_edit(request, lesson: Lesson, subject: Subject):
-    pass
+    if request.method == 'POST':
+        if (form := EditLessonForm(request.POST, instance=lesson)).is_valid():
+            form.save(subject)
+            messages.success(request, _("Changes were successfully saved."))
+            return render(request, 'subjects/lesson/edit.html', {'form': form, 'subject': subject, 'lesson': lesson})
+    else:
+        form = EditLessonForm(instance=lesson)
+    return render(request, 'subjects/lesson/edit.html', {'form': form, 'subject': subject, 'lesson': lesson})
 
 @login_required
 @teacher_required
+@user_is_subject_teacher
 def lesson_delete(request, lesson: Lesson, subject: Subject):
-    pass
+    lesson.delete()
+    messages.success(request, _("Lesson was successfully deleted."))
+    return redirect(subject)
 
 @login_required
 @student_required
@@ -75,16 +101,15 @@ def unenroll_subjects(request):
 
 @login_required
 @teacher_required
+@user_is_subject_teacher
 def mark_list(request, subject: Subject):
-    if subject.teacher != request.user: raise PermissionDenied
     return render(request,'subjects/enrollment/mark_list.html',{'subject':subject})
 
 
 @login_required
 @teacher_required
+@user_is_subject_teacher
 def edit_marks(request, subject: Subject ):
-    if subject.teacher != request.user: raise PermissionDenied
-
     if request.method == 'POST':
         formset = EnrollmentMarkFormSet(request.POST, queryset=subject.enrollments.all())
         if (formset := EnrollmentMarkFormSet(request.POST, queryset=subject.enrollments.all())).is_valid():

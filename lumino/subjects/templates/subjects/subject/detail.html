@@ -1,21 +1,25 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load i18n %}
 
 {% block content %}
-  <h1>{{subject}}</h1>
+  {% include "messages.html" %}
+  <h1>{{ subject }}</h1>
   {% if request.user.profile.is_teacher %}
-    <a href="{% url "subjects:add-lesson" subject %}">{% translate "Add Lesson" %}</a>
-    <a href="{% url "subjects:mark-list" subject %}">{% translate "Marks" %}</a>
+    <div class="actions">
+      <a href="{% url 'subjects:add-lesson' subject %}">{% translate 'Add Lesson' %}</a>
+      <a href="{% url 'subjects:mark-list' subject %}">{% translate 'Marks' %}</a>
+    </div>
   {% endif %}
 
   {% if request.user.profile.is_student %}
     {% if enrollment.mark %}
-      <h3>{% translate "Your mark for this subject:" %}{{enrollment.mark}}</h3>
+      <h3>{% translate 'Your mark for this subject:' %}{{ enrollment.mark }}</h3>
     {% endif %}
   {% endif %}
- 
 
-  {% for lesson in subject.lessons.all %}
-  {% include "subjects/lesson/component.html" %}
-  {% endfor %}
-{% endblock content %}
+  <div class="lessons">
+    {% for lesson in subject.lessons.all %}
+      {% include 'subjects/lesson/component.html' %}
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'django_rq',
     'sorl.thumbnail',
+    'markdownify.apps.MarkdownifyConfig',
 ]
 
 MIDDLEWARE = [

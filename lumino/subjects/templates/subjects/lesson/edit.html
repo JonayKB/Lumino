@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+  {% include "messages.html" %}
+  <h1>Edit Lesson for {{ subject.name }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">{% translate "Save Changes" %}</button>
+    <a href="{% url 'subjects:lesson-detail' subject lesson %}">{% translate "Go to Lesson" %}</a>
+  </form>
+{% endblock %}

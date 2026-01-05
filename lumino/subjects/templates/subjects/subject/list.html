@@ -3,13 +3,13 @@
 
 {% block content %}
   <h1>{% translate 'My subjects' %}</h1>
-  {% include "messages.html" %}
+  {% include 'messages.html' %}
   {% if user.profile.is_student %}
-  <a href="{% url 'subjects:request-certificate' %}">{% translate "Request Grade Certificate" %}</a>
-  <a href="{% url 'subjects:enroll-subjects' %}">{% translate "Enroll Subjects" %}</a>
-  <a href="{% url 'subjects:unenroll-subjects' %}">{% translate "Unenroll Subjects" %}</a>
-
-
+    {% if show_request_certificate %}
+      <a href="{% url 'subjects:request-certificate' %}">{% translate 'Request Grade Certificate' %}</a>
+    {% endif %}
+    <a href="{% url 'subjects:enroll-subjects' %}">{% translate 'Enroll Subjects' %}</a>
+    <a href="{% url 'subjects:unenroll-subjects' %}">{% translate 'Unenroll Subjects' %}</a>
   {% endif %}
   <div class="subject-list">
     {% for subject in subjects %}
