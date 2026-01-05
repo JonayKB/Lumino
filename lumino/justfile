@@ -87,7 +87,7 @@ dbshell:
 
 # Setup new project
 [group('config')]
-setup: && migrate create-su set-tz
+setup: && migrate create-su set-tz set-media
     #!/usr/bin/env bash
     uv sync
     uv run django-admin startproject main .
@@ -101,29 +101,27 @@ set-tz timezone="Atlantic/Canary":
         echo "✔ Fixed TIME_ZONE='{{ timezone }}' and LANGUAGE_CODE='es-es'"
     fi
 
-# Remove migrations
-[confirm("⚠️ All migrations will be removed. Continue? [yN]:")]
-[group('utils')]
-rm-migrations:
+# Set media settings
+[group('config')]
+set-media:
     #!/usr/bin/env bash
-    find . -path "*/migrations/*.py" ! -path "./.venv/*" ! -name "__init__.py" -delete
-    find . -path "*/migrations/*.pyc" ! -path "./.venv/*" -delete
-
-# Remove database
-[confirm("⚠️ Database will be removed. Continue? [yN]:")]
-[group('utils')]
-@rm-database:
-    rm -f db.sqlite3
+    echo "" >> ./main/settings.py
+    echo "MEDIA_ROOT = BASE_DIR / 'media'" >> ./main/settings.py
+    echo "MEDIA_URL = 'media/'" >> ./main/settings.py
+    echo "✔ Media settings added to settings.py"
 
 # Remove migrations and database. Reset DB artefacts.
 [confirm("⚠️ All migrations and database will be removed. Continue? [yN]:")]
-[group('utils')]
-reset-db: rm-migrations rm-database && makemigrations migrate create-su
-    echo "✔ Database reseted."
+[group('config')]
+reset-db: && makemigrations migrate create-su
+    #!/usr/bin/env bash
+    find . -path "*/migrations/*.py" ! -path "./.venv/*" ! -name "__init__.py" -delete
+    find . -path "*/migrations/*.pyc" ! -path "./.venv/*" -delete
+    rm -f db.sqlite3
 
 # Remove virtualenv
 [confirm("⚠️ Virtualenv './venv' will be removed. Continue? [yN]:")]
-[group('utils')]
+[group('config')]
 rm-venv:
     rm -fr .venv
 
@@ -137,45 +135,84 @@ kill:
 test pytest_args="":
     uv run pytest -s {{ pytest_args }}
 
-# Generate random secret key
-[group('production')]
-secret-key:
+# Clean data
+[private]
+[group('data')]
+clean-data:
     #!/usr/bin/env bash
     uv run manage.py shell -v0 -c '
-    from django.core.management.utils import get_random_secret_key
-    print(get_random_secret_key())
+    Subject.objects.all().delete()
+    User.objects.exclude(is_superuser=True).delete()
+    ' 
+    sqlite3 db.sqlite3 '
+    delete from sqlite_sequence where
+    name="subjects_subject" or
+    name="subjects_lesson" or
+    name="subjects_enrollment" or
+    name="users_profile";
+    update sqlite_sequence set seq=1 where name="auth_user";
     '
 
-# Make locale folder for all custom apps
-[group('i18n')]
-makelocale:
+# Show current users on database
+[group('data')]
+show-users password="1234":
     #!/usr/bin/env bash
+    echo
+    echo "Users created on database:"
+    echo "--------------------------"
     uv run manage.py shell -v0 -c '
-    from pathlib import Path
-    from django.conf import settings
-
-    for folder in settings.BASE_DIR.iterdir():
-        if folder.is_dir() and (folder / "apps.py").exists():
-            Path(folder / "locale").mkdir(exist_ok=True)
+    print("STUDENTS\n==================")
+    for user in User.objects.filter(profile__role=Profile.Role.STUDENT):
+        print(user.username)
+    print("\nTEACHERS\n==================")
+    for user in User.objects.filter(profile__role=Profile.Role.TEACHER):
+        print(user.username)
     '
-    echo "✔ Each app folder has now a 'locale' folder" 
+    echo "--------------------------"
+    echo "✔ All predefined users have '{{ password }}' as password."
 
-# Make i18n messages
-[group('i18n')]
-makemessages locale="es":
-    uv run manage.py makemessages -l {{ locale }}
+# Load fixtures into database
+[group('data')]
+@load-data: clean-data && show-users
+    uv run manage.py loaddata fixtures/auth.json fixtures/users.json fixtures/subjects.json
 
-# Compile i18n messages
-[group('i18n')]
-compilemessages:
-    uv run manage.py compilemessages -i .venv
+# Clear sorl-thumbnail generated files and db entries
+[group('media')]
+clear-sorl:
+    #!/usr/bin/env bash
+    uv run manage.py thumbnail clear_delete_all
 
-# Open Poedit
-[group('i18n')]
-poedit app locale="es":
-    poedit ./{{ app }}/locale/{{ locale }}/LC_MESSAGES/django.po
+# Generate fake data and populate database
+[group('data')]
+[private]
+gen-data: clean-data clear-sorl
+    #!/usr/bin/env bash
+    rm -fr media/avatars/example*.jpg
+    uv run manage.py gen_data
+    echo "✔ Fake data generated and loaded into database."
 
-# Launch Django RQ worker (development) through watchdog
-[group('redis')]
-rq:
-    uv run watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker 
+# Dump database data into fixtures
+[group('data')]
+[private]
+dump-data:
+    #!/usr/bin/env bash
+    uv run manage.py dumpdata auth.User > fixtures/auth.json
+    uv run manage.py dumpdata users > fixtures/users.json
+    uv run manage.py dumpdata subjects > fixtures/subjects.json
+    echo "✔ Data dumped into fixtures/*.json"
+
+# Launch worker for Redis Queue (RQ)
+rq: redis
+    uv run watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker
+
+# Start redis server
+[private]
+redis:
+    #!/usr/bin/env bash
+    if [[ $(grep -i redis $(find . -name settings.py)) ]]; then
+        if   [[ $OSTYPE == "linux-gnu"* ]]; then
+            pgrep -x redis &> /dev/null || sudo service redis start
+        elif [[ $OSTYPE == "darwin"* ]]; then
+            pgrep -x Redis &> /dev/null || (open /Applications/Redis.app && sleep 2)
+        fi
+    fi

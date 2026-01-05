@@ -131,6 +131,7 @@ def request_certificate(request):
         messages.error(request, _("You have some ungraded subjects"))
         raise PermissionDenied
     
-    #Aqui debería enviarse en idioma, usando get_language(), pero esta preaprado para mockear con dos argumentos posicionales
-    deliver_certificate.delay(request.build_absolute_uri(), request.user,get_language())
+    #Aqui debería enviarse en idioma, usando get_language(), pero esta preaprado para mockear con dos argumentos posicionales TODO
+    #deliver_certificate.delay(request.build_absolute_uri(), request.user, get_language())
+    deliver_certificate.delay(request.build_absolute_uri(), request.user)
     return render(request,'subjects/enrollment/certificate_request.html')
