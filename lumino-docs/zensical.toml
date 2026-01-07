@@ -6,52 +6,67 @@ site_description = "All documentation of Lumino"
 
 site_author = "Carla, Patricia y Jonay"
 
+repo_url = "https://github.com/JonayKB/Lumino"
+
+site_url = "https://lumino.jonaykb.com"
+
 copyright = """
 Copyright &copy; 2026 The Carla, Patricia y Jonay
 """
 
- nav = [
-   { "Inicio" = "index.md", "icon" = "lucide/home"},
-   { "Requisitos" = "requirements.md", "icon" = "lucide/wrench"},
-   { "Diseño" = "design.md", "icon" = "lucide/wrench"},
-   { "Implementación" = "implementation.md", "icon" = "lucide/wrench"},
-   { "Pruebas" = "testing.md", "icon" = "lucide/wrench"},
-   { "Despliegue" = "deploy.md", "icon" = "lucide/wrench"},
-   { "Manuales de Usuario" = "user-manual.md", "icon" = "lucide/wrench"},
-   { "Mantenimiento" = "maintenance.md", "icon" = "lucide/wrench"},
-   { "Conclusiones y Futuro" = "last_thoughts.md", "icon" = "lucide/wrench"},
+nav = [
+  { "Inicio" = "index.md", "icon" = "lucide/home" },
+  { "Guía de uso" = [
+    "normal-users/index.md",
+    { "Manual de usuario" = "normal-users/user-manual.md", "icon" = "lucide/book" },
+    { "Solución de problemas" = "normal-users/troubleshooting.md", "icon" = "lucide/help-circle" },
+    { "Preguntas frecuentes" = "normal-users/faq.md", "icon" = "lucide/message-circle" },
+
+  ] },
+  { "Guía técnica" = [
+    "developers/index.md",
+    { "Requisitos" = "developers/requirements.md", "icon" = "lucide/list-check" },
+    { "Diseño del sistema" = "developers/design.md", "icon" = "lucide/layers" },
+    { "Implementación" = "developers/implementation.md", "icon" = "lucide/code" },
+    { "Pruebas" = "developers/testing.md", "icon" = "lucide/activity" },
+    { "Despliegue" = "developers/deploy.md", "icon" = "lucide/server" },
+    { "Mantenimiento" = "developers/maintenance.md", "icon" = "lucide/settings" },
+    { "Conclusiones y Futuro" = "developers/last_thoughts.md", "icon" = "lucide/lightbulb" },
+  ] },
+
+
 ]
 
 [project.theme]
 favicon = "images/favicon.png"
 language = "es"
 features = [
-    "announce.dismiss",
-    "content.action.view",
-    "content.code.annotate",
-    "content.code.copy",
-    "content.code.select",
-    "content.footnote.tooltips",
-    "content.tabs.link",
-    "content.tooltips",
-    "header.autohide",
-    "navigation.footer",
-    "navigation.indexes",
-    "navigation.instant",
-    "navigation.instant.prefetch",
-    "navigation.instant.progress",
-    "navigation.instant.preview",
-    "navigation.path",
-    "navigation.prune",
-    "navigation.sections",
-    "navigation.tabs",
-    "navigation.top",
-    "navigation.tracking",
-    "search.highlight",
-    "toc.integrate"
+  "announce.dismiss",
+  "content.action.view",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.code.select",
+  "content.footnote.tooltips",
+  "content.tabs.link",
+  "content.tooltips",
+  "header.autohide",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.instant.progress",
+  "navigation.instant.preview",
+  "navigation.path",
+  "navigation.prune",
+  "navigation.sections",
+  "navigation.tabs",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+  "toc.integrate",
 ]
 
-[[project.theme.palette]] 
+[[project.theme.palette]]
 scheme = "default"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
@@ -72,5 +87,3 @@ code = "Jetbrains Mono"
 [project.theme.icon]
 logo = "lucide/cat"
 repo = "lucide/github"
-
-

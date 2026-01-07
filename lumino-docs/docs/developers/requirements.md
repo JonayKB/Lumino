@@ -1,4 +1,4 @@
 ---
-icon: lucide/home
+icon: lucide/list-check
 title: Requisitos
 ---
