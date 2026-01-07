@@ -10,6 +10,8 @@ repo_url = "https://github.com/JonayKB/Lumino"
 
 site_url = "https://jonaykb.github.io/Lumino/"
 
+repo_name = "JonayKB/Lumino"
+
 copyright = """
 Copyright &copy; 2026 The Carla, Patricia y Jonay
 """
