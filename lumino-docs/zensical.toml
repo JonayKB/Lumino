@@ -40,7 +40,7 @@ nav = [
 ]
 
 [project.theme]
-favicon = "images/favicon.png"
+favicon = "assets/img/favicon.png"
 language = "es"
 features = [
   "announce.dismiss",

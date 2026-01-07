@@ -101,13 +101,14 @@ Al acceder a **My subjects**, verás un listado con todos los módulos matricula
 
 
 Al solicitarlo:
-
+<div class="annotate" markdown>
 * Se generará un PDF con tus calificaciones.
 * Recibirás un correo electrónico con el documento adjunto.
 * Verás el mensaje:
-  **You will get the grade certificate quite soon at [tu_correo@example.com](mailto:tu_correo@example.com)**(1)
-    { .annotate }
-    1. En español recibiras: **Obtendras tu certificado de notas pronto en [tu_correo@example.com](mailto:tu_correo@example.com)**
+  **You will get the grade certificate quite soon at [tu_correo@example.com](mailto:tu_correo@example.com)**(1) 
+</div>
+
+1. En español recibiras: **Obtendras tu certificado de notas pronto en [tu_correo@example.com](mailto:tu_correo@example.com)**
 
 ---
 
