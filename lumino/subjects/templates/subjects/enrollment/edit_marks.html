@@ -3,16 +3,20 @@
 {% load i18n %}
 
 {% block content %}
-  <form method="post" novalidate>
+<div class="container-fluid w-100 h-100 mt-5 pt-4">
+  <form id="edit_marks" class="w-100 bg-transparent shadow-none p-0 d-flex flex-column align-items-center" method="post" novalidate>
     {% csrf_token %}
     {{ formset.management_form }}
 
     {{ formset.non_form_errors }}
 
-    {% for form in formset %}
-      {% include 'subjects/enrollment/mark_form.html' %}
-    {% endfor %}
+    <div class="row">
+      {% for form in formset %}
+        {% include 'subjects/enrollment/mark_form.html' %}
+      {% endfor %}
+    </div>
 
-    <button type="submit">{% translate 'Change Marks' %}</button>
+    <button type="submit" class="btn btn-primary w-25 mt-3 mb-2">{% translate 'Change Marks' %}</button>
   </form>
+</div>
 {% endblock %}

@@ -44,7 +44,7 @@ select[name="language"] {
   Forms
 */
 
-form:not(#setlang) {
+form:not(#setlang, #edit_marks) {
   width: fit-content;
   padding: 2rem;
   background: var(--bs-secondary-bg-subtle);
@@ -52,13 +52,13 @@ form:not(#setlang) {
   box-shadow: 5px 5px 15px 5px var(--bs-body-bg);
 }
 
-form:not(#setlang) div {
+form:not(#setlang, #edit_marks) div {
   margin: 5px 0;
   display: flex;
   flex-direction: column;
 }
 
-form:not(#setlang) div label {
+form:not(#setlang, #edit_marks) div label {
   font-size: 1.1rem;
 }
 
@@ -67,6 +67,10 @@ form:not(#setlang) div input {
   border: 2px solid var(--bs-secondary);
   border-radius: 6px;
   background-color: var(--bs-secondary-bg-subtle);
+}
+
+input[id^="id_form-"] {
+  width: 100%;
 }
 
 /**

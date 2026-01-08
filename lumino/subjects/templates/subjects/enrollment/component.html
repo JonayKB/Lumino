@@ -1,10 +1,14 @@
 {% load i18n %}
 {% load thumbnail %}
 
-<div class="enrollment">
-  {% thumbnail enrollment.student.profile.avatar "50x50" crop="center" format="PNG" as thumb %}
-      <img src="{{ thumb.url }}" alt="{{profile.get_full_name}} avatar">
-  {% endthumbnail %}
-  <a class="name" href="{{ enrollment.student.profile.get_absolute_url }}">{{ enrollment.student.profile.get_full_name }}</a>
-  <h2 class="mark">{{ enrollment.mark|default:_('Ungraded') }}</h2>
+<div class="col-2">
+  <div class="d-flex flex-column justify-content-center bg-secondary-subtle mx-1 my-3 p-2 rounded">
+    <div class="d-flex justify-content-between align-items-center">
+      {% thumbnail enrollment.student.profile.avatar "50x50" crop="center" format="PNG" as thumb %}
+          <img class="rounded" src="{{ thumb.url }}" alt="{{profile.get_full_name}} avatar">
+      {% endthumbnail %}
+      <a class="name" href="{{ enrollment.student.profile.get_absolute_url }}">{{ enrollment.student.profile.get_full_name }}</a>
+    </div>
+    <h2>{{ enrollment.mark|default:_('Ungraded') }}</h2>
+  </div>
 </div>

@@ -21,6 +21,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+handler404 = 'shared.views.custom_404'
+handler403 = 'shared.views.custom_403'
+
 urlpatterns = (
     [
         path('i18n/', include('django.conf.urls.i18n')),

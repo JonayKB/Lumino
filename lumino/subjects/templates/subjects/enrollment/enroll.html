@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
-<div>
-    <h1>{% translate 'Enroll in a subject' %}</h1>
+<div class="d-flex w-100 h-100 justify-content-center align-items-center">
     <form method="post" novalidate>
+    <h1>{% translate 'Enroll in a subject' %}</h1>
         {% csrf_token %}
         {{ form }}
-        <button type="submit">{% translate 'Enroll' %}</button>
+        <button type="submit" class="btn btn-primary w-100 mt-3 mb-2">{% translate 'Enroll' %}</button>
     </form>
 </div>
 {% endblock content %}
