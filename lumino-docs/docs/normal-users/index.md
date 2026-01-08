@@ -32,4 +32,5 @@ Aquí encontrarás instrucciones prácticas, soluciones a problemas comunes y re
      Respuestas rápidas a dudas habituales durante el uso de la aplicación.  
      [Leer las FAQ](faq.md)
 
+
 </div>

@@ -23,7 +23,6 @@ nav = [
     { "Manual de usuario" = "normal-users/user-manual.md", "icon" = "lucide/book" },
     { "Solución de problemas" = "normal-users/troubleshooting.md", "icon" = "lucide/help-circle" },
     { "Preguntas frecuentes" = "normal-users/faq.md", "icon" = "lucide/message-circle" },
-
   ] },
   { "Guía técnica" = [
     "developers/index.md",
@@ -35,8 +34,6 @@ nav = [
     { "Mantenimiento" = "developers/maintenance.md", "icon" = "lucide/settings" },
     { "Conclusiones y Futuro" = "developers/last_thoughts.md", "icon" = "lucide/lightbulb" },
   ] },
-
-
 ]
 
 [project.theme]
