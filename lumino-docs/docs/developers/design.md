@@ -197,4 +197,4 @@ flowchart TD
 ---
 
 !!! success "Resumen"
-El diseño del sistema Lumino combina claridad estructural, modularidad y buenas prácticas de desarrollo, asegurando un proyecto mantenible, escalable y alineado con los objetivos educativos de la plataforma.
+    El diseño del sistema Lumino combina claridad estructural, modularidad y buenas prácticas de desarrollo, asegurando un proyecto mantenible, escalable y alineado con los objetivos educativos de la plataforma.
