@@ -32,7 +32,7 @@ title: Lumino - Página principal
     - Configuración del entorno y variables sensibles
     - Convenciones de desarrollo y control de versiones
     - Testing, TDD y automatización
-    - 
+  
     [Ir a sección técnica](developers/index.md)
 
 </div>
