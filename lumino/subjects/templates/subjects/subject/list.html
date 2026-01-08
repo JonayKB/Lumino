@@ -1,21 +1,25 @@
 {% extends 'base.html' %}
 {% load i18n %}
-
 {% block content %}
-  <h1>{% translate 'My subjects' %}</h1>
-  {% include 'messages.html' %}
-  {% if user.profile.is_student %}
-    {% if show_request_certificate %}
-      <a href="{% url 'subjects:request-certificate' %}">{% translate 'Request Grade Certificate' %}</a>
+  <div class="container-fluid w-100 h-100 pt-5">
+    <h1 class="mt-4">{% translate 'My subjects' %}</h1>
+    {% if user.profile.is_student %}
+      {% if show_request_certificate %}
+        <a href="{% url 'subjects:request-certificate' %}" class="btn btn-outline-warning">{% translate 'Request Grade Certificate' %}</a>
+      {% endif %}
+      <div class="btn-group" role="group" aria-label="Enroll actions">
+        <a href="{% url 'subjects:enroll-subjects' %}" class="btn btn-success">{% translate 'Enroll Subjects' %}</a>
+        <a href="{% url 'subjects:unenroll-subjects' %}" class="btn btn-danger">{% translate 'Unenroll Subjects' %}</a>
+      </div>
     {% endif %}
-    <a href="{% url 'subjects:enroll-subjects' %}">{% translate 'Enroll Subjects' %}</a>
-    <a href="{% url 'subjects:unenroll-subjects' %}">{% translate 'Unenroll Subjects' %}</a>
-  {% endif %}
-  <div class="subject-list">
-    {% for subject in subjects %}
-      {% include 'subjects/subject/component.html' %}
-    {% empty %}
-      {% translate 'No subjects available.' %}
-    {% endfor %}
+    <div class="container-fluid subject-list">
+      <div class="row">
+        {% for subject in subjects %}
+          {% include 'subjects/subject/component.html' %}
+        {% empty %}
+          {% translate 'No subjects available.' %}
+        {% endfor %}
+      </div>
+    </div>
   </div>
 {% endblock %}

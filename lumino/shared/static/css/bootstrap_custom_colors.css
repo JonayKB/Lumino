@@ -1,0 +1,231 @@
+/* ========== LIGHT THEME (default) ========== */
+html {
+  --bs-primary: #00ff80;
+  --bs-primary-rgb: 0, 255, 128;
+  --bs-primary-bg-subtle: #ccffe6;
+  --bs-primary-border-subtle: #66ffb3;
+  --bs-primary-text-emphasis: #00994d;
+
+  --bs-secondary: #60839f;
+  --bs-secondary-rgb: 96, 131, 159;
+  --bs-secondary-bg-subtle: #dfe6ec;
+
+  --bs-success: #00cc66;
+  --bs-success-rgb: 0, 204, 102;
+  --bs-success-bg-subtle: #ccffe6;
+
+  --bs-light: #e6e6e6;
+  --bs-light-rgb: 230, 230, 230;
+
+  --bs-dark: #12211a;
+  --bs-dark-rgb: 18, 33, 26;
+
+  /* Body */
+  --bs-body-color: #254135;
+  --bs-body-color-rgb: 37, 65, 53;
+  --bs-body-bg: #f2f2f2;
+  --bs-body-bg-rgb: 242, 242, 242;
+
+  /* Links */
+  --bs-link-color: #00cc66;
+  --bs-link-color-rgb: 0, 204, 102;
+  --bs-link-hover-color: #00994d;
+
+  /* Borders */
+  --bs-border-color: #b3b3b3;
+  --bs-border-color-translucent: rgba(179, 179, 179, 0.175);
+
+  /* Focus rings */
+  --bs-focus-ring-color: rgba(0, 255, 128, 0.25);
+
+  /* Buttons */
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-color: #fff;
+
+  --bs-btn-hover-bg: color-mix(in srgb, var(--bs-primary) 85%, black);
+  --bs-btn-hover-border-color: color-mix(in srgb, var(--bs-primary) 85%, black);
+
+  --bs-btn-active-bg: color-mix(in srgb, var(--bs-primary) 70%, black);
+  --bs-btn-active-border-color: color-mix(
+    in srgb,
+    var(--bs-primary) 70%,
+    black
+  );
+  --bs-btn-disabled-border-color: transparent;
+}
+
+/* ========== DARK THEME ========== */
+html[data-theme="dark"] {
+  /* Core Bootstrap colors - DARK THEME */
+  --bs-primary: #00cc66;
+  --bs-primary-rgb: 0, 204, 102;
+  --bs-primary-bg-subtle: #00331a;
+  --bs-primary-border-subtle: #00994d;
+  --bs-primary-text-emphasis: #66ffb3;
+
+  --bs-secondary: #4d6980;
+  --bs-secondary-rgb: 77, 105, 128;
+  --bs-secondary-bg-subtle: #131a20;
+
+  --bs-success: #00cc66;
+  --bs-success-rgb: 0, 204, 102;
+  --bs-success-bg-subtle: #00331a;
+
+  --bs-light: #1a1a1a;
+  --bs-light-rgb: 26, 26, 26;
+
+  --bs-dark: #13201a;
+  --bs-dark-rgb: 19, 32, 26;
+
+  /* Body */
+  --bs-body-color: #39604f;
+  --bs-body-color-rgb: 57, 96, 79;
+  --bs-body-bg: #0d0d0d;
+  --bs-body-bg-rgb: 13, 13, 13;
+
+  /* Links */
+  --bs-link-color: #66ffb3;
+  --bs-link-color-rgb: 102, 255, 179;
+  --bs-link-hover-color: #99ffcc;
+
+  /* Borders */
+  --bs-border-color: #4d4d4d;
+  --bs-border-color-translucent: rgba(77, 77, 77, 0.25);
+
+  /* Focus rings */
+  --bs-focus-ring-color: rgba(0, 204, 102, 0.5);
+
+  /* Button */
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-color: #0d0d0d;
+
+  --bs-btn-hover-bg: color-mix(in srgb, var(--bs-primary) 85%, white);
+  --bs-btn-hover-border-color: color-mix(in srgb, var(--bs-primary) 85%, white);
+
+  --bs-btn-active-bg: color-mix(in srgb, var(--bs-primary) 70%, white);
+  --bs-btn-active-border-color: color-mix(
+    in srgb,
+    var(--bs-primary) 70%,
+    white
+  );
+}
+
+/* Buttons primary color ---------------------------------------------------------------------- */
+
+/* Regular primary button */
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+
+  /* Hover */
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: color-mix(in srgb, var(--bs-primary) 85%, black);
+  --bs-btn-hover-border-color: color-mix(in srgb, var(--bs-primary) 85%, black);
+
+  /* Active / pressed */
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: color-mix(in srgb, var(--bs-primary) 70%, black);
+  --bs-btn-active-border-color: color-mix(
+    in srgb,
+    var(--bs-primary) 70%,
+    black
+  );
+
+  /* Disabled (optional) */
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: color-mix(in srgb, var(--bs-primary) 30%, transparent);
+  --bs-btn-disabled-border-color: transparent;
+}
+
+/* Outline primary button */
+.btn-outline-primary {
+  /* Base */
+  --bs-btn-color: var(--bs-primary);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--bs-primary);
+
+  /* Hover */
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--bs-primary);
+  --bs-btn-hover-border-color: var(--bs-primary);
+
+  /* Active / pressed */
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: color-mix(in srgb, var(--bs-primary) 85%, black);
+  --bs-btn-active-border-color: color-mix(
+    in srgb,
+    var(--bs-primary) 85%,
+    black
+  );
+
+  /* Disabled */
+  --bs-btn-disabled-color: var(--bs-primary);
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: var(--bs-primary);
+}
+
+/* Buttons secondary color ---------------------------------------------------------------------- */
+
+/* Regular secondary button */
+.btn-secondary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--bs-secondary);
+  --bs-btn-border-color: var(--bs-secondary);
+
+  /* Hover */
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: color-mix(in srgb, var(--bs-secondary) 85%, black);
+  --bs-btn-hover-border-color: color-mix(
+    in srgb,
+    var(--bs-secondary) 85%,
+    black
+  );
+
+  /* Active */
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: color-mix(in srgb, var(--bs-secondary) 70%, black);
+  --bs-btn-active-border-color: color-mix(
+    in srgb,
+    var(--bs-secondary) 70%,
+    black
+  );
+
+  /* Disabled */
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: color-mix(
+    in srgb,
+    var(--bs-secondary) 30%,
+    transparent
+  );
+  --bs-btn-disabled-border-color: transparent;
+}
+
+/* Outline secondary button */
+.btn-outline-secondary {
+  /* Base */
+  --bs-btn-color: var(--bs-secondary);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--bs-secondary);
+
+  /* Hover */
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--bs-secondary);
+  --bs-btn-hover-border-color: var(--bs-secondary);
+
+  /* Active */
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: color-mix(in srgb, var(--bs-secondary) 85%, black);
+  --bs-btn-active-border-color: color-mix(
+    in srgb,
+    var(--bs-secondary) 85%,
+    black
+  );
+
+  /* Disabled */
+  --bs-btn-disabled-color: var(--bs-secondary);
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: var(--bs-secondary);
+}

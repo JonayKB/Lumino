@@ -1,4 +1,8 @@
-<div class="subject">
-  <h2 title="{{ subject.name }}">{{ subject.code }}</h2>
-  <a href="{{ subject.get_absolute_url }}">🔎</a>
+<div class="col-6 p-2">
+  <a class="px-5 d-flex flex-row justify-content-between align-items-center subject btn btn-outline-secondary" href="{{ subject.get_absolute_url }}">
+    <h2 title="{{ subject.name }}" class="text-primary-emphasis fw-bold">{{ subject.code }}</h2>
+    <h3>{{ subject.teacher.get_full_name }}</h3>
+    <h3>{{ subject.students.count }} <i class="bi bi-people-fill fs-3 text-info-emphasis"></i></h3>
+  </a>
 </div>
+

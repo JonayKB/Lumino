@@ -1,32 +1,34 @@
-from django.shortcuts import render, redirect
-from .forms import LoginForm,SignupForm
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.contrib.auth import login,logout,authenticate
 from django.utils.translation import gettext as _
 
+from .forms import LoginForm, SignupForm
 
 FALLBACK_URL = 'index'
 
-def user_login(request):
 
-    if(request.user.is_authenticated):
+def user_login(request):
+    if request.user.is_authenticated:
         return redirect(FALLBACK_URL)
     if request.method == 'POST':
         if (form := LoginForm(request.POST)).is_valid():
-           username = form.cleaned_data['username']
-           password = form.cleaned_data['password']
-           if user := authenticate(request,username=username, password=password):
-               login(request,user)
-               return redirect(request.GET.get('next', FALLBACK_URL))
-           else:
-                form.add_error(None, _("Incorrect username or password"))
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            if user := authenticate(request, username=username, password=password):
+                login(request, user)
+                return redirect(request.GET.get('next', FALLBACK_URL))
+            else:
+                form.add_error(None, _('Incorrect username or password'))
     else:
         form = LoginForm()
-    return render(request,'accounts/login.html', {'form':form, 'hide_links': True})
+    return render(request, 'accounts/login.html', {'form': form, 'hide_links': True})
+
 
 def user_logout(request):
     logout(request)
     return redirect(reverse(FALLBACK_URL))
+
 
 def user_signup(request):
     if request.method == 'POST':
@@ -37,5 +39,4 @@ def user_signup(request):
             return redirect(FALLBACK_URL)
     else:
         form = SignupForm()
-    return render(request, 'accounts/signup.html',{'form':form, 'hide_links': True})
-
+    return render(request, 'accounts/signup.html', {'form': form, 'hide_links': True})

@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
-<form method="post" novalidate>
-  {% csrf_token %}
-  {{ form }}
-  <input type="submit" value="{% translate 'Sign up' %}">
-  <a href="{% url 'login' %}">{% translate 'Login' %}</a>
-</form>
+<div class="d-flex w-100 h-100 justify-content-center align-items-center">
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" class="btn btn-primary w-100 mt-3 mb-2" value="{% translate 'Sign up' %}">
+    <a class="d-block text-center" href="{% url 'login' %}">{% translate 'Login' %}</a>
+  </form>
+</div>
 {% endblock content %}

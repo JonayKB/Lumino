@@ -2,13 +2,25 @@
 {% load i18n %}
 
 <header>
-  {% setlang %}
-  {% if user.is_authenticated %}
-  <div class="user-nav">
-  <h3>{{user}}</h3>
-  <h5>{{user.profile.get_role_display}}</h5>
-  </div>
-  <a href="{% url 'logout' %}">{% translate "Logout" %}</a>
-  {% endif %}
-
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white fs-2" href="{% url 'index' %}">Lumino</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse d-flex justify-content-end gap-3" id="navbarSupportedContent">
+        {% setlang %}
+        {% if user.is_authenticated %}
+          <a href="{{user.profile.get_absolute_url}}" class="btn btn-outline-warning no-text-decoration d-flex flex-column align-items-end">
+            <h6 class="mb-1">{{ user.get_full_name }}</h6>
+            <p class="mb-0" style="font-size: 0.8rem;">{{ user.profile.get_role_display }}</p>
+          </a>
+          <a class="btn btn-danger" href="{% url 'logout' %}">{% translate "Logout" %}</a>
+        {% elif not hide_links %}
+          <a class="btn btn-outline-secondary" href="{% url 'login' %}">{% translate 'Login' %}</a>
+          <a class="btn btn-primary" href="{% url 'signup' %}">{% translate 'Sign up' %}</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
 </header>

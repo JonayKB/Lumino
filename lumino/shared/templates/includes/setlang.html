@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<form action="{% url 'set_language' %}" method="post" novalidate>
+<form id="setlang" action="{% url 'set_language' %}" method="post" novalidate>
   {% csrf_token %}
   <select name="language" onchange="this.form.submit()">
     {% for language in languages %}

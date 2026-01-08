@@ -1,19 +1,19 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from users.models import Profile
 
 
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
+
 class SignupForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
-        fields=['username','password','first_name','last_name','email']
-        required=['username','password','first_name','last_name','email']
-        widgets={'password': forms.PasswordInput}
-        help_texts  = {'username':None}
+        fields = ['username', 'password', 'first_name', 'last_name', 'email']
+        required = ['username', 'password', 'first_name', 'last_name', 'email']
+        widgets = {'password': forms.PasswordInput}
+        help_texts = {'username': None}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -26,4 +26,3 @@ class SignupForm(forms.ModelForm):
         user.set_password(self.cleaned_data['password'])
         user = super().save(*args, **kwargs)
         return user
-

@@ -1,0 +1,74 @@
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/TitilliumWeb-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+  General
+*/
+
+* {
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+#setlang {
+  margin: 0;
+}
+
+.no-text-decoration {
+  text-decoration: none !important;
+}
+
+/**
+  Header
+*/
+
+select[name="language"] {
+  background-color: transparent;
+  border: none;
+}
+
+/**
+  Index
+*/
+
+#index-background {
+  background-image: url("../img/index_background.jpg");
+  opacity: 10%;
+}
+
+/**
+  Forms
+*/
+
+form:not(#setlang) {
+  width: fit-content;
+  padding: 2rem;
+  background: var(--bs-secondary-bg-subtle);
+  border-radius: 20px;
+  box-shadow: 5px 5px 15px 5px var(--bs-body-bg);
+}
+
+form:not(#setlang) div {
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+form:not(#setlang) div label {
+  font-size: 1.1rem;
+}
+
+textarea,
+form:not(#setlang) div input {
+  border: 2px solid var(--bs-secondary);
+  border-radius: 6px;
+  background-color: var(--bs-secondary-bg-subtle);
+}
+
+/**
+  Lesson
+*/

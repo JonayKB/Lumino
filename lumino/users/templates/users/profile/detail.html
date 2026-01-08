@@ -3,8 +3,6 @@
 {% load i18n %}
 
 {% block content %}
-  {% include "messages.html" %}
-
   <h1> {{profile.get_full_name}} </h1>
   <h2> {{profile.get_role_display}}</h2>
   {% thumbnail profile.avatar "200x200" crop="center" format="PNG" as thumb %}

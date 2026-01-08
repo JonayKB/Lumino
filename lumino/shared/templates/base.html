@@ -1,18 +1,21 @@
 {% load static %}
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lumino</title>
-    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'bootstrap-icons/font/bootstrap-icons.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-icons/font/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap_custom_colors.css'%}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
   <body>
     {% include 'header.html' %}
+    {% include "messages.html" %}
+    <div id="index-background" class="position-absolute top-0 start-0 z-n1 w-100 h-100"></div>
     {% block content %}
-
     {% endblock %}
   </body>
   <script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/messages.js' %}"></script>
 </html>

@@ -2,10 +2,12 @@
 {% load i18n %}
 
 {% block content %}
-  <h1>Add Lesson to {{ subject.name }}</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">{% translate "Add Lesson" %}</button>
-  </form>
+  <div class="d-flex w-100 h-100 justify-content-center align-items-center">
+    <form method="post">
+      <h1>Add Lesson to {{ subject.name }}</h1>
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit" class="btn btn-primary w-100 mt-3 mb-2">{% translate "Add Lesson" %}</button>
+    </form>
+  </div>
 {% endblock %}

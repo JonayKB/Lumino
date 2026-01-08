@@ -11,7 +11,8 @@ class SubjectConverter:
 
     def to_url(self, subject: Subject):
         return subject.code
-    
+
+
 class LessonConverter:
     regex = '[0-9]+'
 

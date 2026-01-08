@@ -41,7 +41,6 @@ MEDIA_URL = 'media/'
 ALLOWED_HOSTS = []
 
 STATICFILES_DIRS = [BASE_DIR / 'node_modules']
-
 RQ_QUEUES = {
     'default': {
         'HOST': 'localhost',
