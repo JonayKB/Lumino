@@ -2,6 +2,8 @@
 {% load i18n %}
 
 {% block content %}
-  <h1>{% translate "Certificate Request" %}</h1>
+<div class="d-flex w-100 h-100 justify-content-center align-items-center flex-column pb-6">
+  <h1 class="text-primary">{% translate "Certificate Request" %}</h1>
   <p>{% translate "You will get the grade certificate quite soon at" %} {{ user.email }}</p>
+</div>
 {% endblock %}
