@@ -4,8 +4,5 @@
 .env
 node_modules
 db.sqlite3
-/media
+media/
 dump.rdb
-staticfiles
-avatars
-certificates
