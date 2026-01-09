@@ -12,7 +12,9 @@
           <a class="btn btn-danger py-1" href="{% url 'subjects:delete-lesson' subject lesson %}">{% translate 'Delete Lesson' %}</a>
         </div>
       {% endif %}
-      <p class="fs-5 mt-3">{{ lesson.content | markdownify }}</p>
+      <div class="fs-5 mt-3">
+        {{ lesson.content | markdownify }}
+      </div>
     </div>
   </div>
 {% endblock %}
