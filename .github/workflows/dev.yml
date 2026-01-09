@@ -1,0 +1,29 @@
+name: Deploy Lumino
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'lumino/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        script: |
+          cd /home/serverkb/Lumino/lumino
+          git pull
+          uv run manage.py migrate
+          uv run manage.py collectstatic --noinput
+          /bin/systemctl restart lumino.service
