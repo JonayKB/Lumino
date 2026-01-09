@@ -1,29 +1,29 @@
 {% load i18n %}
 
 <html>
-  <body style="margin:0; padding:0; background:#f5f5f5; font-family:Arial, Helvetica, sans-serif; color:#333;">
-    <div style="max-width:600px; margin:0 auto; padding:25px; background:#ffffff; border:1px solid #e0e0e0;">
+  <body style="margin:0; padding:0; background:#f2f2f2; font-family:'Inter', sans-serif; color:#254135;">
+    <div style="max-width:600px; margin:0 auto; padding:25px; background:#12211a; border:1px solid #b3b3b3; border-radius:12px;">
       
-      <h1 style="font-size:24px; font-weight:bold; margin-bottom:10px; text-align:center; letter-spacing:1px;">
+      <h1 style="font-size:24px; font-weight:700; margin-bottom:10px; text-align:center; letter-spacing:1px; color:#00ff80;">
         {% translate "OFFICIAL GRADE CERTIFICATE" %}
       </h1>
 
-      <h2 style="font-size:20px; font-weight:normal; margin-bottom:20px; text-align:center; color:#111;">
+      <h2 style="font-size:20px; font-weight:400; margin-bottom:20px; text-align:center; color:#00994d;">
         {{ student.profile.get_full_name|upper }}
       </h2>
 
       <div class="subjects" style="margin-top:20px;">
-        <h3 style="font-size:18px; margin-bottom:10px; color:#222; border-bottom:1px solid #ccc; padding-bottom:5px;">
+        <h3 style="font-size:18px; margin-bottom:10px; color:#66ffb3; border-bottom:1px solid #4d4d4d; padding-bottom:5px;">
           {% translate "SUBJECTS" %}
         </h3>
 
         <ul style="list-style-type:none; padding-left:0; margin:0;">
           {% for enrollment in student.enrollments.all %}
-            <li style="font-size:16px; padding:8px 0; border-bottom:1px solid #eeeeee;">
-              {{ enrollment.subject.name }}: {{ enrollment.mark|default:_('Ungraded') }}
+            <li style="font-size:16px; padding:8px 0; border-bottom:1px solid #4d4d4d;">
+              <h1 style="font-size:14px; color:#00ff80; margin:0;">{{ enrollment.subject.name }}: <span style="color:#00cc66;">{{ enrollment.mark|default:_('Ungraded') }}</span></h1>
             </li>
           {% empty %}
-            <li style="font-size:16px; padding:8px 0; border-bottom:1px solid #eeeeee;">
+            <li style="font-size:16px; padding:8px 0; border-bottom:1px solid #4d4d4d;">
               {% translate "No subjects enrolled" %}
             </li>
           {% endfor %}
