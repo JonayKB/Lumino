@@ -57,8 +57,8 @@ class Lesson(models.Model):
         related_name='lessons',
         on_delete=models.CASCADE,
     )
-    title = models.CharField(max_length=32)
-    content = models.TextField(max_length=256, blank=True)
+    title = models.CharField()
+    content = models.TextField(blank=True)
 
     def __str__(self):
         return f'Lesson: {self.title} of {self.subject}'
