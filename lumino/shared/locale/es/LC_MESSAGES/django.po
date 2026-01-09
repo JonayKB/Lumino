@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-04 19:18+0000\n"
+"POT-Creation-Date: 2026-01-09 15:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,18 +19,30 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
 
-#: shared/templates/header.html:11
+#: shared/templates/403.html:5
+msgid "Not this way pretty. 403"
+msgstr "No por ahí, bonita. 403"
+
+#: shared/templates/403.html:6 shared/templates/404.html:6
+msgid "Go home"
+msgstr "Ir al Inicio"
+
+#: shared/templates/404.html:5
+msgid "Are you lost babygirl?? 404"
+msgstr "¿Estás perdida, chiquita? 404"
+
+#: shared/templates/header.html:16
 msgid "Logout"
 msgstr "Cerrar Sesión"
 
-#: shared/templates/index.html:6
-msgid "Join Lumino. The cool education platform!"
-msgstr "Unete a Lumino. Una plataforma de educación"
-
-#: shared/templates/index.html:7
+#: shared/templates/header.html:18
 msgid "Login"
 msgstr "Iniciar Sesión"
 
-#: shared/templates/index.html:8
+#: shared/templates/header.html:19
 msgid "Sign up"
 msgstr "Registrarse"
+
+#: shared/templates/index.html:6
+msgid "Join Lumino. The cool education platform!"
+msgstr "Únete a Lumino. Una plataforma de educación"

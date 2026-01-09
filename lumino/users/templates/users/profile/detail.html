@@ -8,8 +8,8 @@
     {% thumbnail profile.avatar "200x200" crop="center" format="PNG" as thumb %}
         <img class="rounded" src="{{ thumb.url }}" alt="{{profile.get_full_name}} avatar">
     {% endthumbnail %}
-    <h1> {{profile.get_full_name}} </h1>
-    <h2> {{profile.get_role_display}}</h2>
+    <h1>{{profile.get_full_name}}</h1>
+    <h2>{{profile.get_role_display}}</h2>
     <h2>{{profile.user.email}}</h2>
     <textarea name="bio" id="bio" class="w-100" rows="5" readonly>{{profile.bio}}</textarea>
     {% if profile.user == user %}

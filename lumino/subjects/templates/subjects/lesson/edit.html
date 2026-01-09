@@ -4,7 +4,7 @@
 {% block content %}
   <div class="d-flex w-100 h-100 justify-content-center align-items-center">
     <form method="post">
-      <h1>Edit Lesson for {{ subject.name }}</h1>
+      <h1>{% translate "Edit Lesson for" %} {{ subject.name }}</h1>
       {% csrf_token %}
       {{ form }}
       <button type="submit" class="btn btn-primary w-100 mt-3 mb-2">{% translate "Save Changes" %}</button>
