@@ -7,6 +7,7 @@ title: Lumino - Página principal
     Esta página principal sirve como **hub central de documentación** del proyecto Lumino, combinando información para **usuarios finales** y **equipo técnico**. Desde aquí podrás navegar a las secciones de interés y acceder rápidamente a guías, manuales, herramientas y buenas prácticas.
 
 
+
 ## Usa Lumino
 
 <div style="text-align: center;" markdown="1">
