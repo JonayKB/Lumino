@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container-fluid mt-5 pt-5 d-flex justify-content-center">
   <div class="bg-secondary-subtle rounded d-flex flex-column align-items-center p-5 g-3">
-    {% thumbnail profile.avatar "200x200" crop="center" format="PNG" as thumb %}
+    {% thumbnail  "200x200" crop="center" format="PNG" as thumb %}
         <img class="rounded" src="{{ thumb.url }}" alt="{{profile.get_full_name}} avatar">
     {% endthumbnail %}
     <h1> {{profile.get_full_name}} </h1>

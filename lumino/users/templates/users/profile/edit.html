@@ -2,9 +2,11 @@
 {% load i18n %}
 
 {% block content %}
-    <form method="post" enctype="multipart/form-data" novalidate>
+<div class="d-flex w-100 h-100 justify-content-center align-items-center">
+    <form id="edit-profile" method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {{ form }}
-        <button type="submit">{% translate 'Edit Profile' %}</button>
+        <button type="submit" class="btn btn-primary w-100 mt-3 mb-2">{% translate 'Edit Profile' %}</button>
     </form>
+</div>
 {% endblock content %}
