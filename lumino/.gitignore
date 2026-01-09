@@ -7,3 +7,5 @@ db.sqlite3
 /media
 dump.rdb
 staticfiles
+avatars
+certificates
