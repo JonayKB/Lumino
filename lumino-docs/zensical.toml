@@ -86,3 +86,7 @@ code = "Jetbrains Mono"
 [project.theme.icon]
 logo = "lucide/cat"
 repo = "lucide/github"
+
+[project.extra.analytics]
+provider = "google"
+property = "G-3ZDQFVCCKL"
